@@ -28,4 +28,4 @@ The query identifies how often users visited pages containing the word "youtube"
    - YouTube page titles
    - Total page titles
 5. Calculate the percentage share by continent
-6. Result <img width="798" height="243" alt="image" src="https://github.com/user-attachments/assets/047c11e6-bbc9-4f98-bed3-eb5607e868ab" />
+6. Result: <img width="798" height="243" alt="image" src="https://github.com/user-attachments/assets/047c11e6-bbc9-4f98-bed3-eb5607e868ab" />
