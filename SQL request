@@ -1,0 +1,29 @@
+-- Query:
+-- Extracts nested event parameters via UNNEST
+-- Filters only page_title
+-- Searches for page titles that contain "youtube"
+-- Counts:
+-- - number of YouTube page titles
+-- - total number of page titles
+-- Calculates percentage of YouTube interactions by continent
+
+SELECT
+  sp.continent,
+  COUNT(
+    CASE
+      WHEN LOWER(params.value.string_value) LIKE '%youtube%'
+        THEN params.value.string_value
+      END)
+    cnt,
+  COUNT(params.value.string_value) total,
+  COUNT(
+    CASE
+      WHEN LOWER(params.value.string_value) LIKE '%youtube%'
+        THEN params.value.string_value
+      END)
+    / COUNT(params.value.string_value) * 100 AS percent
+FROM `data-analytics-mate.DA.event_params` ep, UNNEST(event_params) AS params
+JOIN `data-analytics-mate.DA.session_params` sp
+  ON ep.ga_session_id = sp.ga_session_id
+WHERE params.key = 'page_title' AND params.value.string_value IS NOT NULL
+GROUP BY sp.continent
